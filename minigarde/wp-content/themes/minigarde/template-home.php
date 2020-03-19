@@ -1,3 +1,3 @@
 <?php
 /* Template Name: Home */
-echo get_head();
+get_header();
