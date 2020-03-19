@@ -1,59 +1,27 @@
-<?php
-/**
- * The header for our theme
- *
- * This is the template that displays all of the <head> section and everything up until <div id="content">
- *
- * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
- *
- * @package minigarde
- */
-
-?>
-<!doctype html>
+<?php global $web; ?>
+<!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
-	<meta charset="<?php bloginfo( 'charset' ); ?>">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="profile" href="https://gmpg.org/xfn/11">
+    <meta charset="<?php bloginfo( 'charset' ); ?>">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wonder</title>
+    <meta name="description" content="">
 
-	<?php wp_head(); ?>
+    <link href="https://fonts.googleapis.com/css?family=Arvo:400,700" rel="stylesheet">
+
+
+    <?php wp_head(); ?>
 </head>
-
 <body <?php body_class(); ?>>
-<?php wp_body_open(); ?>
-<div id="page" class="site">
-	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'minigarde' ); ?></a>
 
-	<header id="masthead" class="site-header">
-		<div class="site-branding">
-			<?php
-			the_custom_logo();
-			if ( is_front_page() && is_home() ) :
-				?>
-				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-				<?php
-			else :
-				?>
-				<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
-				<?php
-			endif;
-			$minigarde_description = get_bloginfo( 'description', 'display' );
-			if ( $minigarde_description || is_customize_preview() ) :
-				?>
-				<p class="site-description"><?php echo $minigarde_description; /* WPCS: xss ok. */ ?></p>
-			<?php endif; ?>
-		</div><!-- .site-branding -->
 
-		<nav id="site-navigation" class="main-navigation">
-			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'minigarde' ); ?></button>
-			<?php
-			wp_nav_menu( array(
-				'theme_location' => 'menu-1',
-				'menu_id'        => 'primary-menu',
-			) );
-			?>
-		</nav><!-- #site-navigation -->
-	</header><!-- #masthead -->
-
-	<div id="content" class="site-content">
+<header>
+    <nav>
+        <ul>
+            <li class="active"><a href="<?php echo esc_url(home_url('/')) ?>" title="">Home</a></li>
+            <li><a href="<?php echo esc_url(home_url($web['pages']['rendez-vous']['slug'])); ?>)) ?>">Rendez-Vous</a></li>
+            <li><a href="<?php echo esc_url(home_url($web['pages']['contact']['slug'])); ?>)) ?>">Contact</a></li>
+            <li><a href="<?php echo esc_url(home_url($web['pages']['paiement']['slug'])); ?>)) ?>">Paiement</a></li>
+        </ul>
+    </nav>
+</header>
