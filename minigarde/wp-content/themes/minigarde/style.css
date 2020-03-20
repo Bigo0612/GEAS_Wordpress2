@@ -135,3 +135,12 @@ footer {
 	margin-left: 4%;
 	font-size: 1.5em;
 }
+.rdv tr:nth-child(odd){
+    background-color:#024766;
+}
+.rdv tr:nth-child(even){
+    background-color:#22D66E;
+}
+.rdv {
+    color: white;
+}
