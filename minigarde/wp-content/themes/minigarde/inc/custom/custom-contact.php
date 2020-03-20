@@ -34,6 +34,7 @@ function wpdocs_codex_contact_init()
         'items_list' => _x('contacts list', 'Screen reader text for the items list heading on the post type listing screen. Default “Posts list”/”Pages list”. Added in 4.4', 'geas'),
     );
 
+
     $args = array(
         'labels' => $labels,
         'public' => true,
