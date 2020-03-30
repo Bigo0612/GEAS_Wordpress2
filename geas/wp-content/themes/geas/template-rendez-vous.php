@@ -32,3 +32,6 @@ get_header(); ?>
             </tbody>
         </table>
 </div>
+
+<?php
+get_footer();
