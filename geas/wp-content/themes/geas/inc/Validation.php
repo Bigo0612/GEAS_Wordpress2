@@ -69,12 +69,18 @@ class Validation
         return $error;
 
     }
-    public function numberValid($number)
+    public function numberValid($number, $min, $max)
     {
         $error = '';
-        if (empty($number) && is_numeric($number) == false ){
+        if (!empty($number) && is_numeric($number) == true ){
+            if($number > $max){
+                $error = 'Veuillez rentrer moins de '. $max . 'chiffre';
+            } elseif($number < $min ){
+                $error = 'Veuillez rentrer plus de '. $min . 'chiffre';
+                }
+    } else {
             $error = 'veuillez rentrer que des nombres';
-    }
+        }
         return $error;
     }
 
