@@ -8,7 +8,7 @@ function wpdocs_register_my_home_menu_page(){
         'clientpageadmin',
         'client_menu_page',
         'dashicons-admin-comments',
-        56
+        55
     );
 }
 add_action( 'admin_menu', 'wpdocs_register_my_home_menu_page' );
@@ -53,7 +53,7 @@ function client_admin_listing($urlBase)
                     <td><?= $client->prenom; ?></td>
                     <td><?= $client->email; ?></td>
                     <td>
-                        <a href="<?= $urlBase; ?>&single=<?= $client->id; ?>">Voir</a>
+                        <a href="<?= $urlBase; ?>&single=<?= $client->id_Client; ?>">Voir</a>
                     </td>
                 </tr>
             <?php } ?>
@@ -64,28 +64,27 @@ function client_admin_listing($urlBase)
 }
 
 
-function client_admin_single($id,$urlBase)
+function client_admin_single($id_Client,$urlBase)
 {
     global $wpdb;
-    $client = $wpdb->get_row( "SELECT * FROM {$wpdb->prefix}client WHERE id = $id" , OBJECT );
+    $errors = array();
+    $client = $wpdb->get_row( "SELECT * FROM {$wpdb->prefix}client WHERE id_Client = $id_Client" , OBJECT );
 if (!empty($_POST['submitted'])) {
 
         $wpdb->delete(
             'geas_client',
             array(
-
-                'id' => $id,
+                'id_Client'=>$id_Client,
             ),
             array(
-                '%s'
+                    '%s',
             )
         );
-
     }
-}
+
 ?>
 
-<p>id: <?= $client->id; ?></p>
+<p>id: <?= $client->id_Client; ?></p>
 <p>nom: <?= $client->nom; ?></p>
 <p>prenom: <?= $client->prenom; ?></p>
 <p>email: <?= $client->email; ?></p>
@@ -98,11 +97,10 @@ if (!empty($_POST['submitted'])) {
 <?php  $form = new Form($errors);?>
 <Form method="post" action="#">
     <?php
-    $html .= $form->submit('submitted','Supprimer');
+    echo $html= $form->submit('submitted','Supprimer');
 
-    echo $html;
     ?>
 </Form>
-
+<?php }
 
 
