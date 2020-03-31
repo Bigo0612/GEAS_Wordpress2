@@ -48,7 +48,6 @@ function contact_admin_listing($urlBase)
                 <th>email</th>
                 <th>message</th>
                 <th>date</th>
-                <th>Action</th>
             </tr>
             </thead>
 
@@ -78,36 +77,22 @@ function contact_admin_single($id,$urlBase)
     $success = false;
     $contact = $wpdb->get_row( "SELECT * FROM {$wpdb->prefix}contact WHERE id = $id" , OBJECT );
     if (!empty($_POST['submitted'])) {
-        $sujet = trim(strip_tags($_POST['sujet']));
-        $email = trim(strip_tags($_POST['email']));
-        $nom_entreprise = trim(strip_tags($_POST['nom_entreprise']));
+
         $reponse = trim(strip_tags($_POST['reponse']));
 
         $val = new Validation();
 
-        $errors['email'] = $val->emailValid($email);
-        $errors['sujet'] = $val->textValid($sujet, 'sujet', 3, 255);
         $errors['reponse'] = $val->textValid($reponse, 'reponse', 5, 10000);
-        $errors['nom_entreprise'] = $val->textValid($nom_entreprise, 'nom_entreprise', 1, 1000);
 
         if ($val->IsValid($errors)) {
 
-            $wpdb->insert(
-                'geas_reponse_contact',
+            $wpdb->update(
+                'geas_contact',
                 array(
-                    'ID' => NULL,
-                    'nom_entreprise' => $nom_entreprise,
-                    'email' => $email,
-                    'email_client' => $contact->email,
-                    'sujet' => $sujet,
+
                     'reponse' => $reponse,
-                    'created_at' => current_time('mysql'),
-                    'modified_at' => NULL
                 ),
                 array(
-                    '%s',
-                    '%s',
-                    '%s',
                     '%s'
                 )
             );
@@ -125,16 +110,7 @@ function contact_admin_single($id,$urlBase)
   <?php  $form = new Form($errors);?>
     <Form method="post" action="#">
         <?php
-        $html  = $form->label('nom_entreprise','Le nom de l\'entreprise que vous representez :');
-        $html .= $form->input('text','nom_entreprise');
-        $html .= $form->error('sujet');
-        $html .= $form->label('sujet','Le sujet du message :');
-        $html .= $form->input('text','sujet');
-        $html .= $form->error('sujet');
-        $html .= $form->label('email','Email : ');
-        $html .= $form->input('email','email');
-        $html .= $form->error('email');
-        $html .= $form->textarea('reponse');
+        $html = $form->textarea('reponse');
         $html .= $form->error('reponse');
         $html .= $form->submit('submitted','Envoyer');
 
