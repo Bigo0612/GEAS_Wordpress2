@@ -135,6 +135,16 @@ class Form
         return $html;
     }
 
+    public function select2($name, $array, $column, $class = NULL)
+    {
+        $html = '<select name="'.$name.'" class="'.$class.'">';
+        for ($i=0; $i < count($array); $i++){
+            $html .= '<option value="'.$array[$i][$column].'">'.$array[$i][$column].'</option>';
+        }
+        $html .= '</select>';
+        return $html;
+    }
+
     public function inputCheckbox($type,$name,$value,$class=NULL)
     {
         return $this->arround('<input type="'.$type.'" id="'.$name.'" name="'.$name.'" class="'.$class.'" value="'
