@@ -18,9 +18,13 @@ $web = array(
             'id' => 12,
             'slug'  => 'Paiement',
         ),
-        'essaie' => array(
-            'id' => 14,
-            'slug' => 'Essaie'
+        'connexion' => array(
+            'id' => 16,
+            'slug' => 'Connexion'
+        ),
+        'deconexion' => array(
+            'id' => 18,
+            'slug' => 'Deconnexion'
         )
     )
 );

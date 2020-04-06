@@ -1,4 +1,24 @@
-<?php global $web; ?>
+<?php global $web;
+function is_logged()
+{
+
+    if(!empty($_SESSION['mail'])) {
+        if(!empty($_SESSION['mail']['id']) && is_numeric($_SESSION['mail']['id'])) {
+            if(!empty($_SESSION['mail']['nom_entreprise'])) {
+
+
+                        if(!empty($_SESSION['mail']['ip'])) {
+                            if($_SESSION['mail']['ip'] == $_SERVER['REMOTE_ADDR']) {
+                                return true;
+                            }
+                        }
+
+
+            }
+        }
+    }
+    return false;
+}?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
@@ -19,9 +39,14 @@
     <nav>
         <ul>
             <li class="active"><a href="<?php echo esc_url(home_url('/')) ?>" title="">Home</a></li>
-            <li><a href="<?php echo esc_url(home_url($web['pages']['rendez-vous']['slug'])); ?>">Rendez-Vous</a></li>
+            <?php if (!is_logged()) { ?>
             <li><a href="<?php echo esc_url(home_url($web['pages']['contact']['slug'])); ?>">Contact</a></li>
+                <li><a href="<?php echo esc_url(home_url($web['pages']['connexion']['slug'])); ?>">Connexion</a></li>
+            <?php } else { ?>
+            <li><a href="<?php echo esc_url(home_url($web['pages']['rendez-vous']['slug'])); ?>">Rendez-Vous</a></li>
             <li><a href="<?php echo esc_url(home_url($web['pages']['paiement']['slug'])); ?>">Paiement</a></li>
+            <li><a href="<?php echo esc_url(home_url($web['pages']['deconexion']['slug'])); ?>">Deconnexions</a></li>
+            <?php } ?>
         </ul>
     </nav>
 </header>
