@@ -33,23 +33,30 @@ if ($val->IsValid($errors)) {
             if (password_verify($mdp,$connexion->mot_de_passe)) {
                 if (password_verify($confmdp,$connexion->conf_mot_de_passe)) {
 
-                    $_SESSION['mail'] = array(
-                        'id' => $connexion['id'],
-                        'nom_entreprise' => $connexion['nom_entreprise'],
-                        'ip' => $_SERVER['REMOTE_ADDR'],
-                    );
-                   // return home_url();
+                  //  add_action('init', 'geas_start_session', 1);
+
+                   $_SESSION['id_Professionel'] = $connexion->id_Professionel;
+                    $_SESSION['mail'] = $connexion->mail;
+                    $_SESSION['nom_entreprise'] = $connexion->nom_entreprise;
+                    $_SESSION['ip'] = $_SERVER['REMOTE_ADDR'];
+
+                    echo '<pre>';
+                      echo print_r($_SESSION);
+                      echo '</pre>';
+
+                   // $location = esc_url(home_url($web['pages']['contact']['slug']));
+                 // wp_redirect(home_url());
                 } else {
-                    echo 'confmdp not good';
+                    $errors['badconfmdp'] = 'Mot de passe ou confirmation de passe incorrect';
                 }
             } else {
-                echo 'mdp not good';
+                $errors['badmdp'] = 'Mail ou Mot de passe incorect';
             }
         } else {
-            echo 'mail not good';
+            $errors['badmail'] = 'Mail ou Mot de passe incorect';
         }
     } else {
-        echo 'nom_entreprise not good';
+        $errors['badent'] = 'Identifiant ou Mot de passe incorect';
     }
 }
     }

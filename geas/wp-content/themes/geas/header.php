@@ -2,18 +2,14 @@
 function is_logged()
 {
 
-    if(!empty($_SESSION['mail'])) {
-        if(!empty($_SESSION['mail']['id']) && is_numeric($_SESSION['mail']['id'])) {
-            if(!empty($_SESSION['mail']['nom_entreprise'])) {
-
-
-                        if(!empty($_SESSION['mail']['ip'])) {
-                            if($_SESSION['mail']['ip'] == $_SERVER['REMOTE_ADDR']) {
+    if(!empty($_SESSION['nom_entreprise'])) {
+        if(!empty($_SESSION['nom_entreprise']['id_Professionel']) && is_numeric($_SESSION['id_Professionel'])) {
+            if(!empty($_SESSION['nom_entreprise']['pseudo'])) {
+                if(!empty($_SESSION['nom_entreprise']['ip'])) {
+                    if($_SESSION['nom_entreprise']['ip'] == $_SERVER['REMOTE_ADDR']) {
                                 return true;
-                            }
-                        }
-
-
+                    }
+                }
             }
         }
     }
@@ -49,4 +45,5 @@ function is_logged()
             <?php } ?>
         </ul>
     </nav>
+
 </header>
