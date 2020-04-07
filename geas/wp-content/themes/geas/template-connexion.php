@@ -1,9 +1,8 @@
 <?php
 /* Template Name: Connexion */
 session_start();
-get_header();
-
 global $wpdb;
+get_header();
 
 $errors = array();
 $success = false;

@@ -14,7 +14,7 @@
     </div>
 </footer>
 
-<script src="<?= $view->asset('js/main.js'); ?>"></script>
+<script src="js/main.js'"></script>
 <script src="https://kit.fontawesome.com/5d1ae1daad.js" crossorigin="anonymous"></script>
 
 <?php wp_footer(); ?>

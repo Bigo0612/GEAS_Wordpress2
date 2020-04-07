@@ -3,12 +3,12 @@ function is_logged()
 {
 
     if(!empty($_SESSION['nom_entreprise'])) {
-        if(!empty($_SESSION['nom_entreprise']['id_Professionel']) && is_numeric($_SESSION['id_Professionel'])) {
-            if(!empty($_SESSION['nom_entreprise']['pseudo'])) {
-                if(!empty($_SESSION['nom_entreprise']['ip'])) {
-                    if($_SESSION['nom_entreprise']['ip'] == $_SERVER['REMOTE_ADDR']) {
+       if(!empty($_SESSION['id_Professionel']) && is_numeric($_SESSION['id_Professionel'])) {
+            if(!empty($_SESSION['mail'])) {
+                if(!empty($_SESSION['ip'])) {
+                    if($_SESSION['ip'] == $_SERVER['REMOTE_ADDR']) {
                                 return true;
-                    }
+                   }
                 }
             }
         }

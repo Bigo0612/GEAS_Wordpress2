@@ -1,5 +1,6 @@
 <?php
 /* Template Name: Home */
+session_start();
 get_header();
 
 global $wpdb;
