@@ -196,10 +196,25 @@ footer {
 	margin-left: 4%;
 	font-size: 1.5em;
 }
-
-
-
-
+.rdv{
+	border: solid 1px;
+	width: 100%;
+	margin-bottom: 100px;
+}
+.rdv tr{
+	border: solid;
+	height: auto;
+}
+.rdv td{
+	border: solid;
+	padding: 10px;
+	width: 100px;
+}
+.rdv th{
+	border: solid;
+	padding: 10px;
+	width: 100px;
+}
 
 
 /*!

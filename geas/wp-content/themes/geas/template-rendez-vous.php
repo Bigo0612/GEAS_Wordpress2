@@ -65,6 +65,7 @@ if (!empty($_POST['submitted'])) {
     }
 
 }
+$rdvs = $wpdb->get_results( "SELECT * FROM {$wpdb->prefix}rendezvous_has_Enfant INNER JOIN geas_rendezvous ON geas_rendezvous.id_rendezvous = geas_rendezvous_has_Enfant.rendezvous_id_rendezvous INNER JOIN  geas_Enfant ON geas_Enfant.id_Enfant = geas_rendezvous_has_Enfant.Enfant_id_Enfant" , OBJECT );
 
 ?>
     <div class="wrap">
@@ -74,28 +75,43 @@ if (!empty($_POST['submitted'])) {
         <table class="rdv">
             <thead>
             <tr>
-                <th>id</th>
-                <th>sujet</th>
-                <th>email</th>
-                <th>message</th>
-                <th>date</th>
+                <th>id enfant</th>
+                <th>heure debut</th>
+                <th>heure fin</th>
+                <th>date rendez-vous</th>
+                <th>jour semaine</th>
+                <th>nom enfant</th>
+                <th>prenom</th>
+                <th>anniv</th>
+                <th>age</th>
                 <th>Action</th>
             </tr>
             </thead>
 
             <tbody id="the-list">
-            <?php for ($i=0; $i < 5; $i++) { ?>
+            <?php foreach ($rdvs as $rdv) { ?>
                 <tr>
-                    <td>bvfv</td>
-                    <td>vf</td>
-                    <td>vfvfb</td>
-                    <td>bdf</td>
-                    <td>fbvf,c</td>
+                    <td><?php echo $rdv->id_Enfant ?></td>
+                    <td><?php echo $rdv->heure_debut ?></td>
+                    <td><?php echo $rdv->heure_fin ?></td>
+                    <td><?php echo $rdv->date_rendezvous ?></td>
+                    <td><?php echo $rdv->jour_sem ?></td>
+                    <td><?php echo $rdv->nom ?></td>
+                    <td><?php echo $rdv->prenom ?></td>
+                    <td><?php echo $rdv->date_Birth ?></td>
+                    <td><?php echo $rdv->age ?></td>
                     <td>
-                        <a href="">voir</a>
+                        <a href="<?php get_the_permalink()?>&single=<?= $rdv->id; ?>">voir</a>
                     </td>
                 </tr>
-            <?php   } ?>
+            <?php   }
+            $contact = $wpdb->get_row("SELECT * FROM {$wpdb->prefix}rendezvous_has_Enfant ", OBJECT);
+
+            ?>
+            <h2>Profil</h2>
+            <p>id: <?= $contact->id; ?></p>
+            <p>sujet: <?= $contact->heure_debut; ?></p>
+            <p>email: <?= $contact->heure_fin; ?></p>
 
             </tbody>
         </table>
