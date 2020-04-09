@@ -1,17 +1,34 @@
 <?php
-get_header();
-
-if(!empty($_GET['single']) && is_numeric($_GET['single'])) {
-    $id = $_GET['single'];
+get_header();?>
+<div class="wrap_infoP">
+<h2 class="enfinfo">Enfant Information</h2>
+<?php
+while ( have_posts() ) :
+    the_post();
 
     global $wpdb;
-    $contact = $wpdb->get_row("SELECT * FROM {$wpdb->prefix}rendezvous_has_Enfant WHERE id = :id", OBJECT);
+    $infos = $wpdb->get_results( "SELECT * FROM {$wpdb->prefix}Enfants_has_Client INNER JOIN geas_Enfant ON geas_Enfant.id_Enfant = geas_Enfants_has_Client.fk_id_Enfant INNER JOIN  geas_Client ON geas_Client.id_Client = geas_Enfants_has_Client.fk_id_Client" , OBJECT );
+
 
     ?>
-    <h2>Profil</h2>
-    <p>id: <?= $contact->id; ?></p>
-    <p>sujet: <?= $contact->heure_debut; ?></p>
-    <p>email: <?= $contact->heure_fin; ?></p>
+<div class="parties">
+    <?php foreach ($infos as $info){?>
+<h3 class="ident">Identification</h3>
+    <p class="det">Nom: <?= $info->nom_Client; ?></p>
+    <p class="det">Prenom: <?= $info->prenom; ?></p>
+    <p class="det">Date de Naissance: <?= $info->date_Birth; ?></p>
+    <p class="det">Age: <?= $info->age; ?></p>
+    <?php } ?>
+</div>
+    <h3 class="ident">Information Résponsable légaux</h3>
 
-<?php }
+<h3 class="ident">Pathogenes</h3>
+    <h3 class="ident">Rendez-vous</h3>
+
+    </div>
+
+<?php
+
+endwhile; // End of the loop.
+
 get_footer();

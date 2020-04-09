@@ -8,7 +8,7 @@ $web = array(
         ),
         'rendez-vous' => array(
             'id' => 8,
-            'slug'  => 'Rendez-vous',
+            'slug'  => 'rendez-vous',
         ),
         'contact' => array(
             'id' => 11,
@@ -25,6 +25,10 @@ $web = array(
         'deconexion' => array(
             'id' => 18,
             'slug' => 'Deconnexion'
+        ),
+        'details' => array(
+            'id' => 23,
+            'slug' => 'details'
         )
     )
 );

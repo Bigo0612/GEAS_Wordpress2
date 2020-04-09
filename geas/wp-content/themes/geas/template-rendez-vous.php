@@ -1,5 +1,5 @@
 <?php
-/* Template Name: Rendez-Vous */
+/* Template Name: rendez-vous */
 session_start();
 get_header();
 ?>
@@ -66,6 +66,23 @@ if (!empty($_POST['submitted'])) {
 
 }
 $rdvs = $wpdb->get_results( "SELECT * FROM {$wpdb->prefix}rendezvous_has_Enfant INNER JOIN geas_rendezvous ON geas_rendezvous.id_rendezvous = geas_rendezvous_has_Enfant.rendezvous_id_rendezvous INNER JOIN  geas_Enfant ON geas_Enfant.id_Enfant = geas_rendezvous_has_Enfant.Enfant_id_Enfant" , OBJECT );
+$args = array(
+    'post_type'      => 'Rendez-vous',
+    'post_status'    => 'publish',
+    'posts_per_page' => 1,
+    'order'          => 'DESC',
+    'orderby'        => ''
+);
+$the_query = new WP_Query( $args );
+
+// The Loop
+if ( $the_query->have_posts() ) {
+
+    while ($the_query->have_posts()) {
+        $the_query->the_post();
+
+        echo  '<h2><a href="' . get_the_permalink() . '">' . get_the_ID() . '</a></h2>';
+
 
 ?>
     <div class="wrap">
@@ -101,21 +118,20 @@ $rdvs = $wpdb->get_results( "SELECT * FROM {$wpdb->prefix}rendezvous_has_Enfant 
                     <td><?php echo $rdv->date_Birth ?></td>
                     <td><?php echo $rdv->age ?></td>
                     <td>
-                        <a href="<?php get_the_permalink()?>&single=<?= $rdv->id; ?>">voir</a>
+                        <a href="<?php echo get_the_permalink()?> ">voir</a>
                     </td>
                 </tr>
             <?php   }
-            $contact = $wpdb->get_row("SELECT * FROM {$wpdb->prefix}rendezvous_has_Enfant ", OBJECT);
-
             ?>
-            <h2>Profil</h2>
-            <p>id: <?= $contact->id; ?></p>
-            <p>sujet: <?= $contact->heure_debut; ?></p>
-            <p>email: <?= $contact->heure_fin; ?></p>
 
             </tbody>
         </table>
+        <?php
+        }
 
+        }
+        wp_reset_postdata();
+          ?>
         <div class="cadrement">
             <?php $form= new Form(); ?>
             <form action="#" method="post">

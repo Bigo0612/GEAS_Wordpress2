@@ -14,6 +14,8 @@ get_header();
 		<main id="main" class="site-main">
 
 		<?php
+        var_dump(have_posts());
+        die('ff');
 		while ( have_posts() ) :
 			the_post();
 
