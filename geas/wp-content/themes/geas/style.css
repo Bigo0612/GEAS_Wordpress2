@@ -216,8 +216,8 @@ footer {
 	width: 100px;
 }
 
-.wrap_infoP {
-	max-width: 1000px;
+#wrap_infoP {
+	max-width: 700px;
 	width: 100%;
 	margin: 0 auto;
 	padding: 40px;
@@ -228,8 +228,8 @@ h2.enfinfo {
 	text-align: center;
 	margin-bottom: 20px;
 }
-.trait{border: solid 1px;width: 70%;margin: 0px auto;margin-top: 80px;margin-bottom: 50px}
-.parties{height: auto;padding: 10px 0;margin-bottom: 30px}
+.trait{border: solid 1px;width: 70%;margin: 0px auto;margin-top: 20px;margin-bottom: 20px}
+.parties{height: auto;padding: 10px 0;}
 h3.ident{
 	font-size: 1.5em;
 	margin-bottom: 15px;
@@ -237,8 +237,13 @@ h3.ident{
 p.det{font-size: .90em;margin-bottom: 5px;}
 .infloat{width: 50%;float: left}
 .infloat2{width: 33.333%;float: left}
-
-
+#telechargement{margin: 0 auto;max-width: 140px;width: 100%;margin-top: 20px;margin-bottom: 50px}
+.wrap_infordv {
+	max-width: 1000px;
+	width: 100%;
+	margin: 0 auto;
+	padding: 40px;
+}
 
 
 /*!

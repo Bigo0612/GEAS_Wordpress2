@@ -175,7 +175,8 @@ if ( $the_query->have_posts() ) {
             multidate: true,
             format: 'dd-mm-yyyy'
         });
-        $('.date').multiDatesPicker();</script>
+        $('.date').multiDatesPicker();
+        </script>
 
 
 <?php
