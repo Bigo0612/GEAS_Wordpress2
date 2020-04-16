@@ -245,6 +245,18 @@ p.det{font-size: .90em;margin-bottom: 5px;}
 	padding: 40px;
 }
 
+/* //////////////////////////////
+///////////  Facture  ///////////
+/////////////////////////////////
+ */
+.wrap_facture{max-width: 900px;
+	width: 100%;
+	margin: 0 auto;}
+.float2{width: 50%;float: left;padding: 15px}
+.logo{height: 100px}
+.titrefacture{border: solid 1px;background-color: grey;font-size: 2.5em;text-align: center;padding: 5px;border-radius: 10px}
+.details_entreprise{border: solid 1px;background-color: grey;font-size: 1em;text-align: left;padding: 5px;border-radius: 10px;height: auto}
+
 
 /*!
  * Datepicker for Bootstrap v1.5.0 (https://github.com/eternicode/bootstrap-datepicker)

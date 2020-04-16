@@ -39,10 +39,15 @@ if ($val->IsValid($errors)) {
                     $_SESSION['nom_entreprise'] = $connexion->nom_entreprise;
                     $_SESSION['ip'] = $_SERVER['REMOTE_ADDR'];
 
-                    echo '<pre>';
-                      echo print_r($_SESSION);
-                      echo '</pre>';
-
+                    //echo '<pre>';
+                    //  echo print_r($_SESSION);
+                    //  echo '</pre>'; ?>
+                    <script type="text/javascript">
+                <!--
+                    window.location.replace("../");
+                -->
+            </script>
+<?php
                    // $location = esc_url(home_url($web['pages']['contact']['slug']));
                  // wp_redirect(home_url());
                 } else {

@@ -118,7 +118,7 @@ if ( $the_query->have_posts() ) {
                     <td><?php echo $rdv->date_Birth ?></td>
                     <td><?php echo $rdv->age ?></td>
                     <td>
-                        <a href="<?php echo get_the_permalink()?> ">voir</a>
+                        <a href="LastProjet/GEAS/geas/Rendez-vous/details?id=<?php echo $rdv->id ?> ">voir</a>
                     </td>
                 </tr>
             <?php   }

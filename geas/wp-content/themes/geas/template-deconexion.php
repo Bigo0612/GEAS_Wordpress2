@@ -3,5 +3,10 @@
 session_start();
 $_SESSION = array();
 session_destroy();
-header(home_url('/'));
+?>
+<script type="text/javascript">
+    <!--
+    window.location.replace("../");
+    -->
+</script>
 
