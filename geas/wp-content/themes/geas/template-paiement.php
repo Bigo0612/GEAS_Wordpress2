@@ -7,7 +7,6 @@ get_header();?>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.debug.js"></script>
 
-<body>
 <div class="wrap_facture">
     <?php
     $factures = $wpdb->get_row( "SELECT * FROM {$wpdb->prefix}Professionel WHERE id_Professionel = 16", OBJECT);
@@ -24,18 +23,17 @@ get_header();?>
     <div class="float2">
         <div class="details_entreprise">
             <h3 class="factureSubtitle"><?php echo $factures->nom_entreprise ?></h3>
-            <p><?php echo $factures->raison_sociale ?></p>
-            <p><?php echo $factures->adresse1 ?></p>
-            <p><?php echo $factures->ville . ' ' . $factures->cp ?></p>
-            <p><?php echo $factures->tel_pro ?></p>
-            <p><?php echo $factures->mail ?></p>
+            <p class="table_Professionel"><?php echo $factures->raison_sociale ?></p>
+            <p class="table_Professionel"><?php echo $factures->adresse1 ?></p>
+            <p class="table_Professionel"><?php echo $factures->ville . ' ' . $factures->cp ?></p>
+            <p class="table_Professionel"><?php echo $factures->tel_pro ?></p>
+            <p class="table_Professionel"><?php echo $factures->mail ?></p>
         </div>
-        <div>
-
-        </div>
+    </div>
+    <div class="clear"></div>
         <div class="entete">
             <div class="float3">
-                <h3 class="factureSubtitle">Facture n° :<?php echo $numeroFactures ?></h3>
+                <h3 class="factureSubtitle">Facture n° : <?php echo $numeroFactures ?></h3>
             </div>
             <div class="float3">
                 <h3 class="factureSubtitle"><?php $datetime = date("d/m/Y");
@@ -47,13 +45,12 @@ get_header();?>
 
                     Echo $newd;?></h3>
             </div>
-            <h3 class="factureSubtitle">Période du <?php
+            <h3 class="factureSubtitle2">Période du <?php
                 $dateDeb = $date -> format('01/m/Y');
                 $dateFin = $date -> format('t/m/Y');
-                echo $dateDeb . ' au ' . $dateFin;?>
+                echo $dateDeb . ' au ' . $dateFin;?></h3>
 
         </div>
-    </div>
         <h3 class="float1_5">Nom</h3>
         <h3 class="float1_2">Etablissement / accueil</h3>
         <h3 class="float1_2">Désignation</h3>
@@ -62,20 +59,20 @@ get_header();?>
         <h3 class="float1_3">Montant</h3>
             <div class="descriptif">
                 <p class="desc_details"><?php echo $nomClient->nom_Client ?></p>
-                <p class="desc_details"><?php echo $factures->nom_entreprise ?></p>
-                <p class="desc_details"></p>
+                <p class="desc_details2"><?php echo $factures->nom_entreprise ?></p>
+                <p class="desc_details2"></p>
             </div>
             <div class="montant">
-                <p class="montant_float"></p>
-                <p class="montant_float"></p>
-                <p class="montant_float"></p>
-                <div class="sous_total">
-                    <p class="sous_total_float">Sous Total</p>
-                </div>
+                <h4 class="montant_float">32</h4>
+                <h4 class="montant_float">56</h4>
+                <h4 class="montant_float">765</h4>
             </div>
+    <div class="sous_total">
+        <p class="sous_total_float">Sous Total : </p>
+    </div>
             <div class="banderole">
                 <p class="total_p">Reste à payer pour cette facture : </p>
-                <p class="total_p">TOTAL FACTURE : </p>
+                <p class="total_p2">TOTAL FACTURE : </p>
             </div>
             <div class="float5">
                 <p class="modalit_paiemant">Modes de paiements :</p>
@@ -86,14 +83,27 @@ get_header();?>
                 <p class="modalit_paiemant">- Par prélèvement bancaire</p>
             </div>
             <div class="float5">
-                <p class="modalit_paiemant"></p>
+                <p class="modalit_paiemant">bdjbcdjc</p>
                 <p class="modalit_paiemant"></p>
             </div>
-            <div class="banderole">
+    <div class="clear"></div>
+            <div class="banderole2">
                 <p class="coupon">A joindre avec au règlement</p>
             </div>
             <div class="bas_page">
-                <p class="coupondet"></p>
+                <div class="coupondet">
+                    <h3 class="coupdetail">Facture n° : <?php echo $numeroFactures ?></h3>
+                    <h3 class="coupdetail"><?php echo $factures->nom_entreprise ?></h3>
+                    <h3 class="coupdetail">Période du <?php
+                        $dateDeb = $date -> format('01/m/Y');
+                        $dateFin = $date -> format('t/m/Y');
+                        echo $dateDeb . ' au ' . $dateFin;?></h3>
+                </div>
+                <div class="coupondet2">
+                    <h3 class="coupdetail">Date : <?php $datetime = date("d/m/Y");
+                        echo $datetime; ?></h3>
+                    <h3 class="coupdetail">TOTAL FACTURE : </h3>
+                </div>
             </div>
 </div>
 <script

@@ -256,7 +256,28 @@ p.det{font-size: .90em;margin-bottom: 5px;}
 .logo{height: 100px}
 .titrefacture{border: solid 1px;background-color: grey;font-size: 2.5em;text-align: center;padding: 5px;border-radius: 10px}
 .details_entreprise{border: solid 1px;background-color: grey;font-size: 1em;text-align: left;padding: 5px;border-radius: 10px;height: auto}
-
+.table_Professionel{padding: 5px 0}
+.entete{border: solid 1px;padding: 15px;border-radius: 10px}
+.float3{width: 33.3333333%;float: left}
+.factureSubtitle2{text-align: center;margin-top: 40px;}
+.float1_5{width: 15%;float: left;border: solid 1px;border-radius: 10px;padding: 3px 0;text-align: center}
+.float1_2{width: 32%;float: left;border: solid 1px;border-radius: 10px;padding: 3px 0;text-align: center}
+.float1_3{width: 7%;float: left;border: solid 1px;border-radius: 10px;padding: 3px 0;text-align: center}
+.descriptif{width: 79%;float: left;border: solid 1px;height: 400px}
+.montant{width: 21%;float: left;border: solid 1px;height: 400px}
+.desc_details{width: 20%;float: left;text-align: left;padding: 5px}
+.desc_details2{width: 40%;float: left;text-align: left;padding: 5px}
+.sous_total{width: 100%;border: solid 1px; border-radius: 10px;padding: 5px;text-align: right}
+.banderole{width: 100%;border: solid 1px; border-radius: 10px;padding: 5px;height: 27px}
+.total_p{width: 75%;float: left;}
+.total_p2{width: 25%;float: left}
+.montant_float{width: 33.333333%;float: left;padding: 5px}
+.float5{width: 50%;float: left; padding: 25px 0}
+.banderole2{width: 100%;border: solid 1px; border-radius: 10px;padding: 5px;text-align: center}
+.bas_page{width: 100%;border-radius: 10px;border: solid 1px;height: 100px}
+.coupondet{width: 75%;float: left;text-align: right;padding: 10px}
+.coupondet2{width: 25%;float: left;text-align: right;padding: 10px}
+.coupdetail{padding: 5px 0}
 
 /*!
  * Datepicker for Bootstrap v1.5.0 (https://github.com/eternicode/bootstrap-datepicker)
