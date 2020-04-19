@@ -13,7 +13,7 @@ get_header();?>
    // echo $id;
 
     global $wpdb;
-    $infos = $wpdb->get_row( "SELECT * FROM {$wpdb->prefix}Enfants_has_Client INNER JOIN geas_Enfant ON geas_Enfant.id_Enfant = geas_Enfants_has_Client.fk_id_Enfant INNER JOIN  geas_Client ON geas_Client.id_Client = geas_Enfants_has_Client.fk_id_Client INNER JOIN  geas_TypeRelation ON geas_TypeRelation.id_TypeRelation = geas_Enfants_has_Client.TypeRelation_id_TypeRelation WHERE id_Enfant = $id" , OBJECT );
+    $infos = $wpdb->get_row( "SELECT *, geas_Client.nom as nom_Client, geas_Client.prenom as prenom_Client, geas_Enfant.nom as nom_Enfant, geas_Enfant.prenom as prenom_Enfant  FROM {$wpdb->prefix}Enfants_has_Client INNER JOIN geas_Enfant ON geas_Enfant.id_Enfant = geas_Enfants_has_Client.fk_id_Enfant INNER JOIN  geas_Client ON geas_Client.id_Client = geas_Enfants_has_Client.fk_id_Client INNER JOIN  geas_TypeRelation ON geas_TypeRelation.id_TypeRelation = geas_Enfants_has_Client.TypeRelation_id_TypeRelation WHERE id_Enfant = $id" , OBJECT );
     $allergies = $wpdb->get_row("SELECT * FROM {$wpdb->prefix}TypePathologies INNER JOIN geas_Allergie ON geas_TypePathologies.id_TypePathologies = geas_Allergie.TypePathologies_id_TypePathologies INNER JOIN geas_Enfant ON geas_Enfant.id_Enfant = geas_TypePathologies.fk_id_Enfant WHERE id_Enfant = $id", OBJECT);
     $maladies = $wpdb->get_row( "SELECT * FROM {$wpdb->prefix}Allergie_has_Enfant INNER JOIN geas_Enfant ON geas_Enfant.id_Enfant = geas_Allergie_has_Enfant.Enfant_id_Enfant INNER JOIN  geas_Allergie ON geas_Allergie.id_Allergie = geas_Allergie_has_Enfant.Allergie_id_Allergie WHERE id_Enfant = $id" , OBJECT );
     $vaccin = $wpdb->get_row( "SELECT * FROM {$wpdb->prefix}Vaccin INNER JOIN geas_Enfant ON geas_Enfant.id_Enfant = geas_Vaccin.fk_id_Enfant where id_Enfant = $id" , OBJECT );
@@ -25,11 +25,11 @@ get_header();?>
 <div class="parties">
     <h3 class="ident">Identification</h3>
         <div class="infloat">
-            <p class="det">Nom: <?= $infos->nom; ?></p>
+            <p class="det">Nom: <?= $infos->nom_Enfant; ?></p>
             <p class="det">Date de Naissance: <?= $infos->date_Birth; ?></p>
         </div>
         <div class="infloat">
-            <p class="det">Prenom: <?= $infos->prenom; ?></p>
+            <p class="det">Prenom: <?= $infos->prenom_Enfant; ?></p>
             <p class="det">Age: <?= $infos->age; ?></p>
         </div>
 </div>

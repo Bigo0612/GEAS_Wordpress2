@@ -3,6 +3,7 @@
 session_start();
 get_header();
 $id_pro = $_SESSION['id_Professionel'];
+
 ?>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <link href="https://cdn.rawgit.com/dubrox/Multiple-Dates-Picker-for-jQuery-UI/master/jquery-ui.multidatespicker.css" rel="stylesheet"/>
@@ -31,10 +32,10 @@ if (!empty($_POST['submitted'])) {
 
     $jour = trim(strip_tags($_POST['jour']));
     echo $jour;
-
-    $heure_debut = trim(strip_tags($_POST['heure_debut']));
-    $heure_fin = trim(strip_tags($_POST['heure_fin']));
-    $nb_repas = trim(strip_tags($_POST['nb_repas']));
+echo $id_pro;
+    $horaire_debut = trim(strip_tags($_POST['horaire_debut']));
+    $horaire_fin = trim(strip_tags($_POST['horaire_fin']));
+    $nb_place = trim(strip_tags($_POST['nb_place']));
 
     $val = new Validation();
 
@@ -42,9 +43,9 @@ if (!empty($_POST['submitted'])) {
     //$errors['heure_debut'] = $val->numberValid($heure_debut,1,31);
     //$errors['$heure_fin'] =$val->numberValid(heure_fin,1,53);
 
-   // echo '<pre>';
-    //echo print_r($errors);
-    //echo '</pre>';
+    echo '<pre>';
+    echo print_r($errors);
+    echo '</pre>';
 
     if ($val->IsValid($errors)) {
 
@@ -52,17 +53,21 @@ if (!empty($_POST['submitted'])) {
         $wpdb->insert(
             'geas_Jour_has_Professionel',
             array(
-                'Jour_id_Jour' => NULL,
-                'Professionel_id_Professionel' => NULL,
-                'horaire_debut' => NULL,
-                'horaire_fin' => NULL,
-                'nb_place'  => 4,
-                'jour' => NULL,
+                'Jour_id_Jour' => 2,
+                'Professionel_id_Professionel' => $id_pro,
+                'horaire_debut' => $horaire_debut,
+                'horaire_fin' => $horaire_fin,
+                'nb_place'  => $nb_place,
+                'jour' => $jour,
 
             ),
             array(
-
-                '%s',
+                '%d',
+                '%d',
+                '%d',
+                '%d',
+                '%d',
+                '%d'
 
             )
         );?>
@@ -148,15 +153,15 @@ if ( $the_query->have_posts() ) {
                 $html = $form->label('jour', 'Jour de la semaine', 'labpro');
                 $html .= $form->input('date', 'jour', 'jour',);
                 $html .= '<span class="error">'.$errors['$jour'].'</span>';
-                $html .= $form->label('heure_debut','heure debut','labpro');
-                $html .= $form->input('time','heure_debut','inspro');
-                $html .= '<span class="error">'.$errors['$heure_debut'].'</span>';
-                $html .= $form->label('heure_fin','Heure fin','labpro');
-                $html .= $form->input('time','heure_fin','inspro');
-                $html .= '<span class="error">'.$errors['$heure_fin'].'</span>';
-                $html .= $form->label('nb_repas','Nombre de repas','labpro');
-                $html .= $form->input('number','nb_repas','inspro');
-                $html .= '<span class="error">'.$errors['$nb_repas'].'</span>';
+                $html .= $form->label('horaire_debut','heure debut','labpro');
+                $html .= $form->input('time','horaire_debut','inspro');
+                $html .= '<span class="error">'.$errors['horaire_debut'].'</span>';
+                $html .= $form->label('horaire_fin','Heure fin','labpro');
+                $html .= $form->input('time','horaire_fin','inspro');
+                $html .= '<span class="error">'.$errors['horaire_fin'].'</span>';
+                $html .= $form->label('nb_place','Nombre de repas','labpro');
+                $html .= $form->input('number','nb_place','inspro');
+                $html .= '<span class="error">'.$errors['nb_place'].'</span>';
                 $html .= $form->submit('submitted', 'Envoyer', 'envoiepro');
 
                 echo $html;
