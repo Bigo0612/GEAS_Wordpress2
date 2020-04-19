@@ -1,4 +1,5 @@
 <?php
+session_start();
 get_header();?>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -6,18 +7,17 @@ get_header();?>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.debug.js"></script>
-<?php session_start();
+<?php ;
 
-
-while ( have_posts() ) :
-    the_post();
+ $id = $_GET['id'];
+   // echo $id;
 
     global $wpdb;
-    $infos = $wpdb->get_row( "SELECT * FROM {$wpdb->prefix}Enfants_has_Client INNER JOIN geas_Enfant ON geas_Enfant.id_Enfant = geas_Enfants_has_Client.fk_id_Enfant INNER JOIN  geas_Client ON geas_Client.id_Client = geas_Enfants_has_Client.fk_id_Client INNER JOIN  geas_TypeRelation ON geas_TypeRelation.id_TypeRelation = geas_Enfants_has_Client.TypeRelation_id_TypeRelation WHERE id_Enfant = 1" , OBJECT );
-    $allergies = $wpdb->get_row("SELECT * FROM {$wpdb->prefix}TypePathologies INNER JOIN geas_Allergie ON geas_TypePathologies.id_TypePathologies = geas_Allergie.TypePathologies_id_TypePathologies INNER JOIN geas_Enfant ON geas_Enfant.id_Enfant = geas_TypePathologies.fk_id_Enfant WHERE id_Enfant = 1", OBJECT);
-    $maladies = $wpdb->get_row( "SELECT * FROM {$wpdb->prefix}Allergie_has_Enfant INNER JOIN geas_Enfant ON geas_Enfant.id_Enfant = geas_Allergie_has_Enfant.Enfant_id_Enfant INNER JOIN  geas_Allergie ON geas_Allergie.id_Allergie = geas_Allergie_has_Enfant.Allergie_id_Allergie WHERE id_Enfant = 1" , OBJECT );
-    $vaccin = $wpdb->get_row( "SELECT * FROM {$wpdb->prefix}Vaccin INNER JOIN geas_Enfant ON geas_Enfant.id_Enfant = geas_Vaccin.fk_id_Enfant where id_Enfant = 1" , OBJECT );
-    $rdvs = $wpdb->get_results( "SELECT * FROM {$wpdb->prefix}rendezvous_has_Enfant INNER JOIN geas_rendezvous ON geas_rendezvous.id_rendezvous = geas_rendezvous_has_Enfant.rendezvous_id_rendezvous INNER JOIN  geas_Enfant ON geas_Enfant.id_Enfant = geas_rendezvous_has_Enfant.Enfant_id_Enfant WHERE id_Enfant = 1" , OBJECT );
+    $infos = $wpdb->get_row( "SELECT * FROM {$wpdb->prefix}Enfants_has_Client INNER JOIN geas_Enfant ON geas_Enfant.id_Enfant = geas_Enfants_has_Client.fk_id_Enfant INNER JOIN  geas_Client ON geas_Client.id_Client = geas_Enfants_has_Client.fk_id_Client INNER JOIN  geas_TypeRelation ON geas_TypeRelation.id_TypeRelation = geas_Enfants_has_Client.TypeRelation_id_TypeRelation WHERE id_Enfant = $id" , OBJECT );
+    $allergies = $wpdb->get_row("SELECT * FROM {$wpdb->prefix}TypePathologies INNER JOIN geas_Allergie ON geas_TypePathologies.id_TypePathologies = geas_Allergie.TypePathologies_id_TypePathologies INNER JOIN geas_Enfant ON geas_Enfant.id_Enfant = geas_TypePathologies.fk_id_Enfant WHERE id_Enfant = $id", OBJECT);
+    $maladies = $wpdb->get_row( "SELECT * FROM {$wpdb->prefix}Allergie_has_Enfant INNER JOIN geas_Enfant ON geas_Enfant.id_Enfant = geas_Allergie_has_Enfant.Enfant_id_Enfant INNER JOIN  geas_Allergie ON geas_Allergie.id_Allergie = geas_Allergie_has_Enfant.Allergie_id_Allergie WHERE id_Enfant = $id" , OBJECT );
+    $vaccin = $wpdb->get_row( "SELECT * FROM {$wpdb->prefix}Vaccin INNER JOIN geas_Enfant ON geas_Enfant.id_Enfant = geas_Vaccin.fk_id_Enfant where id_Enfant = $id" , OBJECT );
+    $rdvs = $wpdb->get_results( "SELECT * FROM {$wpdb->prefix}rendezvous_has_Enfant INNER JOIN geas_rendezvous ON geas_rendezvous.id_rendezvous = geas_rendezvous_has_Enfant.rendezvous_id_rendezvous INNER JOIN  geas_Enfant ON geas_Enfant.id_Enfant = geas_rendezvous_has_Enfant.Enfant_id_Enfant WHERE id_Enfant = $id" , OBJECT );
 
     ?>
     <div id="wrap_infoP">
@@ -97,10 +97,7 @@ while ( have_posts() ) :
     </div>
 
 
-<?php
 
-endwhile; // End of the loop.
-?>
 <script
         src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="

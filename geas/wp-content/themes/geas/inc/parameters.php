@@ -8,7 +8,7 @@ $web = array(
         ),
         'rendez-vous' => array(
             'id' => 8,
-            'slug'  => 'rendez-vous',
+            'slug'  => 'Rendez-vous',
         ),
         'contact' => array(
             'id' => 11,
@@ -16,7 +16,7 @@ $web = array(
         ),
         'paiement' => array(
             'id' => 12,
-            'slug'  => 'Paiement',
+            'slug'  => 'paiement',
         ),
         'connexion' => array(
             'id' => 16,

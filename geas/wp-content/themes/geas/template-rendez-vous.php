@@ -2,6 +2,7 @@
 /* Template Name: rendez-vous */
 session_start();
 get_header();
+$id_pro = $_SESSION['id_Professionel'];
 ?>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <link href="https://cdn.rawgit.com/dubrox/Multiple-Dates-Picker-for-jQuery-UI/master/jquery-ui.multidatespicker.css" rel="stylesheet"/>
@@ -31,37 +32,46 @@ if (!empty($_POST['submitted'])) {
     $jour = trim(strip_tags($_POST['jour']));
     echo $jour;
 
-    $journumero = trim(strip_tags($_POST['journumero']));
-    $journumerosem = trim(strip_tags($_POST['journumerosem']));
+    $heure_debut = trim(strip_tags($_POST['heure_debut']));
+    $heure_fin = trim(strip_tags($_POST['heure_fin']));
+    $nb_repas = trim(strip_tags($_POST['nb_repas']));
 
     $val = new Validation();
 
-   // $errors['jour'] = $val->textValid($jour, 'jour', 4,10);
-    $errors['journumero'] = $val->numberValid($journumero,1,31);
-    $errors['journumerosem'] =$val->numberValid($journumerosem,1,53);
+    $errors['jour'] = $val->textValid($jour, 'jour', 4,10);
+    //$errors['heure_debut'] = $val->numberValid($heure_debut,1,31);
+    //$errors['$heure_fin'] =$val->numberValid(heure_fin,1,53);
 
-    echo '<pre>';
-    echo print_r($errors);
-    echo '</pre>';
+   // echo '<pre>';
+    //echo print_r($errors);
+    //echo '</pre>';
 
     if ($val->IsValid($errors)) {
 
 
         $wpdb->insert(
-            'geas_Jour',
+            'geas_Jour_has_Professionel',
             array(
-                'id_Jour' => NULL,
-                'jour' => $jour,
-                'journumero' => $journumero,
-                'journumerosem' => $journumerosem,
+                'Jour_id_Jour' => NULL,
+                'Professionel_id_Professionel' => NULL,
+                'horaire_debut' => NULL,
+                'horaire_fin' => NULL,
+                'nb_place'  => 4,
+                'jour' => NULL,
+
             ),
             array(
-                '%s',
-                '%d',
-                '%d'
-            )
-        );
 
+                '%s',
+
+            )
+        );?>
+        <script type="text/javascript">
+                <!--
+       /* window.location.replace("LastProjet/GEAS/geas/Rendez-vous/");*/
+                -->
+            </script>
+<?php
     }
 
 }
@@ -80,8 +90,6 @@ if ( $the_query->have_posts() ) {
 
     while ($the_query->have_posts()) {
         $the_query->the_post();
-
-        echo  '<h2><a href="' . get_the_permalink() . '">' . get_the_ID() . '</a></h2>';
 
 
 ?>
@@ -137,22 +145,25 @@ if ( $the_query->have_posts() ) {
             <form action="#" method="post">
                 <?php
 
-               // $html = $form->label('jour', 'Jour de la semaine', 'labpro');
-               // $html = $form->select2('jour', $joursem, 'jour','rt');
-               // $html = '<span class="error"></span>';
-                $html = $form->label('journumero','Jour dans le mois','labpro');
-                $html .= $form->input('number','journumero','inspro');
-                $html .= '<span class="error">'.$errors['$journumero'].'</span>';
-                $html .= $form->label('journumerosem','Jour de la semaine','labpro');
-                $html .= $form->input('number','journumerosem','inspro');
-                $html .= '<span class="error">'.$errors['$journumerosem'].'</span>';
+                $html = $form->label('jour', 'Jour de la semaine', 'labpro');
+                $html .= $form->input('date', 'jour', 'jour',);
+                $html .= '<span class="error">'.$errors['$jour'].'</span>';
+                $html .= $form->label('heure_debut','heure debut','labpro');
+                $html .= $form->input('time','heure_debut','inspro');
+                $html .= '<span class="error">'.$errors['$heure_debut'].'</span>';
+                $html .= $form->label('heure_fin','Heure fin','labpro');
+                $html .= $form->input('time','heure_fin','inspro');
+                $html .= '<span class="error">'.$errors['$heure_fin'].'</span>';
+                $html .= $form->label('nb_repas','Nombre de repas','labpro');
+                $html .= $form->input('number','nb_repas','inspro');
+                $html .= '<span class="error">'.$errors['$nb_repas'].'</span>';
                 $html .= $form->submit('submitted', 'Envoyer', 'envoiepro');
 
                 echo $html;
                 ?>
                 <div class="container">
                     <h3>Bootstrap Multi Select Date Picker</h3>
-                    <input type="text" class="form-control date" placeholder="Pick the multiple dates" name="jour">
+                    <input type="text" class="form-control date" placeholder="Pick the multiple dates" name="">
                 </div>
 
             </form>

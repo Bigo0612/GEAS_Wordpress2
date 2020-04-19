@@ -1,6 +1,9 @@
 <?php
-
-get_header();?>
+/* Template Name: facture */
+session_start();
+get_header();
+$id = $_GET['id'];
+$id_pro = $_SESSION['id_Professionel']?>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
@@ -9,12 +12,13 @@ get_header();?>
 
 <div class="wrap_facture">
     <?php
+
     global $wpdb;
-    $factures = $wpdb->get_row( "SELECT * FROM {$wpdb->prefix}Professionel WHERE id_Professionel = 16", OBJECT);
-    $numfactures = $wpdb->get_row( "SELECT max(id_factures) AS numfac FROM {$wpdb->prefix}Professionel WHERE id_Professionel = 16", OBJECT);
-    $nomClient = $wpdb->get_row( "SELECT * FROM {$wpdb->prefix}Enfants_has_Client INNER JOIN geas_Enfant ON geas_Enfant.id_Enfant = geas_Enfants_has_Client.fk_id_Enfant INNER JOIN  geas_Client ON geas_Client.id_Client = geas_Enfants_has_Client.fk_id_Client INNER JOIN  geas_TypeRelation ON geas_TypeRelation.id_TypeRelation = geas_Enfants_has_Client.TypeRelation_id_TypeRelation WHERE id_Enfant = 1" , OBJECT );
-    $tarifs = $wpdb->get_row( "SELECT * FROM {$wpdb->prefix}tarifs WHERE fk_id_Professionel = 16", OBJECT);
-    $heures = $wpdb->get_row( "SELECT sum(heure_debut) as totaldebut, sum(heure_fin) as totalfin, sum(nb_repas) as totalrepas FROM {$wpdb->prefix}Jour WHERE fk_id_Enfant = 1", OBJECT);
+    $factures = $wpdb->get_row( "SELECT * FROM {$wpdb->prefix}Professionel WHERE id_Professionel = $id_pro", OBJECT);
+    $numfactures = $wpdb->get_row( "SELECT max(id_factures) AS numfac FROM {$wpdb->prefix}Professionel WHERE id_Professionel = $id_pro", OBJECT);
+    $nomClient = $wpdb->get_row( "SELECT * FROM {$wpdb->prefix}Enfants_has_Client INNER JOIN geas_Enfant ON geas_Enfant.id_Enfant = geas_Enfants_has_Client.fk_id_Enfant INNER JOIN  geas_Client ON geas_Client.id_Client = geas_Enfants_has_Client.fk_id_Client INNER JOIN  geas_TypeRelation ON geas_TypeRelation.id_TypeRelation = geas_Enfants_has_Client.TypeRelation_id_TypeRelation WHERE id_Enfant = $id" , OBJECT );
+    $tarifs = $wpdb->get_row( "SELECT * FROM {$wpdb->prefix}tarifs WHERE fk_id_Professionel = $id_pro", OBJECT);
+    $heures = $wpdb->get_row( "SELECT sum(heure_debut) as totaldebut, sum(heure_fin) as totalfin, sum(nb_repas) as totalrepas FROM {$wpdb->prefix}Jour WHERE fk_id_Enfant = $id", OBJECT);
     $numeroFactures = $numfactures->numfac + 1;
     $numeroFactures = sprintf('%05d',$numeroFactures);
     $date = new DateTime()
